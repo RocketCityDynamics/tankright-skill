@@ -1,5 +1,29 @@
 from mycroft import MycroftSkill, intent_file_handler
+import RPi.GPIO as GPIO
+import time
+from time import sleep
 
+#Python scripts execute sequentially, meaning one line right after the other.
+#The method for DC motor movement that worked in this script is to:
+# 1. set the correct pins for motions
+# 2. wait 3 seconds
+# 3. then turn the pins all to "low", effectively killing the power at the right time.
+
+#this is a permutation of the Python test script to drive the motors with a wireless gamepad. This takes a chunk of that code and makes it work by voice.
+
+in1 = 17 # R Motor GPIO address
+#GPIO 17 = wPi , BCM 8, phys addr = 18
+in2 = 27 # R Motor GPIO address
+#GPIO 27 = wPi 14, BCM 11, phys addr = 16
+in3 = 23 # L Motor GPIO address
+#GPIO 17 = wPi 0, BCM 17, phys addr = 11
+in4 = 24 # L Motor GPIO address
+#GPIO 27 = wPi 2, BCM 27, phys addr = 13
+en = 25 #L motor gpio
+#GPIO 8 = wPi  , BCM 
+en2 = 22 #R MOTOR GPIO
+#GPIO 22 = wPi 3, BCM 22, phys addr = 15
+temp1=1
 
 class Tankright(MycroftSkill):
     def __init__(self):
